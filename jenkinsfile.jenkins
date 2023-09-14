@@ -15,14 +15,12 @@ pipeline {
                     success{
                                 mail to: "hassanadraa9@gmail.com",
                                 subject: "test status email",
-                                body: "test was successful!",
-                                attachLog: true
+                                body: "test was successful!"
                     }
                     failure{
                                 mail to: "hassanadraa9@gmail.com",
                                 subject: "test status email",
-                                body: "test failed!",
-                                attachLog: true            
+                                body: "test failed!"           
                     }
             }
         }
