@@ -37,14 +37,12 @@ pipeline {
                     success{
                                 mail to: "hassanadraa9@gmail.com",
                                 subject: "security status email",
-                                body: "security scan was successful!",
-                                attachLog: true
+                                body: "security scan was successful!"
                     }
                     failure{
                                 mail to: "hassanadraa9@gmail.com",
                                 subject: "security status email",
-                                body: "security scan failed!",
-                                attachLog: true            
+                                body: "security scan failed!"      
                     }
             }
         }
