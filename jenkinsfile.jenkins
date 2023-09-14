@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the code using Maven ..' 
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                echo 'Unit Testing ..'
+                echo 'integration testing using Selenium ..'
+            }
+            post{
+                    success{
+                                mail to: "hassanadraa9@gmail.com",
+                                subject: "test status email",
+                                body: "test was successful!",
+                                attachLog: true
+                    }
+                    failure{
+                                mail to: "hassanadraa9@gmail.com",
+                                subject: "test status email",
+                                body: "test failed!",
+                                attachLog: true            
+                    }
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                echo 'Code Analysing using JetBrains ..'
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                echo 'Security Scanning uing JFrog ..'
+            }
+            post {
+                    success{
+                                mail to: "hassanadraa9@gmail.com",
+                                subject: "security status email",
+                                body: "security scan was successful!",
+                                attachLog: true
+                    }
+                    failure{
+                                mail to: "hassanadraa9@gmail.com",
+                                subject: "security status email",
+                                body: "security scan failed!",
+                                attachLog: true            
+                    }
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                echo 'Deploying the application to Staging to AWS EC2 ..'
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'integration Testing on staging ..'
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo 'deploying the application AWS EC2 for production ..'
+            }
+        }
+    }
+}
